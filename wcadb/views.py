@@ -68,6 +68,7 @@ def CountryRankView(request,countryid):
 
 def CountrySingleView(request,countryid):
     context={}
+    cursor=connection.cursor()
     cursor.execute('''SELECT * FROM Events''')
     context['eventinfo']=dictfetchall(cursor)
     context['countryinfo']=countryid
@@ -75,12 +76,14 @@ def CountrySingleView(request,countryid):
 
 def CountryAverageView(request,countryid):
     context={}
+    cursor=connection.cursor()
     cursor.execute('''SELECT * FROM Events''')
     context['eventinfo']=dictfetchall(cursor)
     context['countryinfo']=countryid
     return render(request,'wcadb/countryaverage.html',context)
 
 def CountrySingleRankView(request,countryid,eventid):
+    cursor=connection.cursor()
     cursor.execute('''DROP VIEW IF EXISTS SingleEvent CASCADE''')
     cursor.execute('''DROP VIEW IF EXISTS Event100 CASCADE''')
     cursor.execute('''CREATE VIEW Event100 AS SELECT * FROM Rankssingle WHERE eventid='''+'\''+str(eventid)+'\''+''' AND countryrank<101''')
@@ -99,6 +102,7 @@ def CountrySingleRankView(request,countryid,eventid):
     return render(request,'wcadb/countrysinglerank.html',context)
 
 def CountryAverageRankView(request,countryid,eventid):
+    cursor=connection.cursor()
     cursor.execute('''DROP VIEW IF EXISTS AverageEvent CASCADE''')
     cursor.execute('''DROP VIEW IF EXISTS Event100 CASCADE''')
     cursor.execute('''CREATE VIEW Event100 AS SELECT * FROM Ranksaverage WHERE eventid='''+'\''+str(eventid)+'\''+''' AND countryrank<101''')
@@ -114,6 +118,7 @@ def CountryAverageRankView(request,countryid,eventid):
     return render(request,'wcadb/countryaveragerank.html',context)
 
 def EventSingleRankView(request,eventid):
+    cursor=connection.cursor()
     cursor.execute('''DROP VIEW IF EXISTS SingleEvent''')
     cursor.execute('''DROP VIEW IF EXISTS Event10''')
     cursor.execute('''CREATE VIEW Event10 AS SELECT * FROM Rankssingle WHERE eventid='''+'\''+str(eventid)+'\''+''' AND worldrank<101''')
@@ -131,6 +136,7 @@ def EventSingleRankView(request,eventid):
     return render(request,'wcadb/eventsinglerank.html',context)
 
 def EventAverageRankView(request,eventid):
+    cursor=connection.cursor()
     cursor.execute('''DROP VIEW IF EXISTS AverageEvent''')
     cursor.execute('''DROP VIEW IF EXISTS Event10''')
     cursor.execute('''CREATE VIEW Event10 AS SELECT * FROM RanksAverage WHERE eventid='''+'\''+str(eventid)+'\''+''' AND worldrank<101''')
@@ -146,6 +152,7 @@ def EventAverageRankView(request,eventid):
 
 
 def RecordAverageView(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS eventWR CASCADE''')
     cursor.execute('''CREATE VIEW eventWR AS
@@ -161,6 +168,7 @@ ON eventid=id''')
     return render(request,'wcadb/recordaverage.html',context)
 
 def RecordSingleView(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS eventWR CASCADE''')
     cursor.execute('''CREATE VIEW eventWR AS
@@ -187,12 +195,14 @@ ON eventid=id''')
     return render(request,'wcadb/recordsingle.html',context)
 
 def RecordCountryView(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''SELECT * FROM Countries''')
     context['countries']=dictfetchall(cursor)
     return render(request,'wcadb/recordcountry.html',context)
 
 def RecordCountryPageView(request,countryid):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''SELECT * FROM Events''')
     context['eventinfo']=dictfetchall(cursor)
@@ -200,6 +210,7 @@ def RecordCountryPageView(request,countryid):
     return render(request,'wcadb/recordcountrypage.html',context)
 
 def RecordCountrySingleView(request,countryid):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS eventWR CASCADE''')
     cursor.execute('''CREATE VIEW eventWR AS
@@ -227,6 +238,7 @@ ON eventid=id''')
     return render(request,'wcadb/recordcountrysingle.html',context)
 
 def RecordCountryAverageView(request,countryid):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS eventWR CASCADE''')
     cursor.execute('''CREATE VIEW eventWR AS
@@ -248,6 +260,7 @@ class CompetitionsView(generic.ListView):
     template_name='wcadb/competitions.html'    
 
 def UpcomingCompsView(request):
+    cursor=connection.cursor()
     i=datetime.datetime.now()
     print i.day
     print i.month
@@ -258,6 +271,7 @@ def UpcomingCompsView(request):
     return render(request,'wcadb/upcomingcomps.html',context)
 
 def PastCompsView(request):
+    cursor=connection.cursor()
     i=datetime.datetime.now()
     print i.day
     print i.month
@@ -268,6 +282,7 @@ def PastCompsView(request):
     return render(request,'wcadb/pastcomps.html',context)
 
 def NewCompView(request,compid):
+    cursor=connection.cursor()
     cursor.execute('''SELECT information,cellname,countryid,name,endday,eventspecs,cityname,latitude::float/1000000 AS latitude,longitude::float/1000000 as longitude,month,venue,external_website,venuedetails,wcadelegate,year,day,endmonth,organiser,id,venueaddress FROM Competitions WHERE id='''+'\''+str(compid)+'\'')
     context={}
     context['compinfo']=dictfetchall(cursor)
@@ -275,12 +290,14 @@ def NewCompView(request,compid):
 
 
 def CompView(request,compid):
+    cursor=connection.cursor()
     cursor.execute('''SELECT information,cellname,countryid,name,endday,eventspecs,cityname,latitude::float/1000000 AS latitude,longitude::float/1000000 as longitude,month,venue,external_website,venuedetails,wcadelegate,year,day,endmonth,organiser,id,venueaddress FROM Competitions WHERE id='''+'\''+str(compid)+'\'')
     context={}
     context['compinfo']=dictfetchall(cursor)
     return render(request,'wcadb/comp.html',context)
 
 def CompParticipantsView(request,compid):
+    cursor=connection.cursor()
     cursor.execute('''SELECT personid,personname FROM Results
 WHERE competitionid= \'''' + compid +'''\' GROUP BY personid,personname
 ORDER BY personname''')
@@ -289,18 +306,21 @@ ORDER BY personname''')
     return render(request,'wcadb/compparticipants.html',context)
 
 def CompResultsView(request,compid):
+    cursor=connection.cursor()
     cursor.execute('''SELECT * FROM Results WHERE competitionid= \'''' + compid +'\'' +''' ORDER BY eventid,roundid,pos''')
     context={}
     context['compinfo']=dictfetchall(cursor)
     return render(request,'wcadb/compresults.html',context)
 
 def CompScramblesView(request,compid):
+    cursor=connection.cursor()
     cursor.execute('''SELECT * FROM Scrambles WHERE competitionid= \'''' + compid +'\'' +''' ORDER BY eventid,roundid,groupid,isextra,scramblenum''')
     context={}
     context['compinfo']=dictfetchall(cursor)
     return render(request,'wcadb/compscrambles.html',context)
 
 def PersonView(request,wcaid):
+    cursor=connection.cursor()
     cursor.execute('''SELECT personid, eventid, name, best::float/100 as best, worldrank, continentrank, countryrank
 FROM RanksAverage
 INNER JOIN Events
@@ -330,6 +350,7 @@ WHERE personid = \''''+wcaid+ '\'' +''' ORDER BY eventid,competitionid,roundid''
     return render(request,'wcadb/profile.html',context)
 
 def mostbyperson(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS comp2view''')
     cursor.execute('''CREATE VIEW comp2view AS
@@ -345,6 +366,7 @@ LIMIT 100''')
     return render(request,'wcadb/mostbyperson.html',context)
 
 def mostincountry(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''SELECT countryid,COUNT(id) as count FROM Competitions
 GROUP BY countryid
@@ -353,6 +375,7 @@ ORDER BY count DESC''')
     return render(request,'wcadb/mostincountry.html',context)
 
 def mostincity(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''SELECT cityname,countryid,COUNT(id) as count FROM Competitions
 GROUP BY cityname,countryid
@@ -362,6 +385,7 @@ LIMIT 100''')
     return render(request,'wcadb/mostincity.html',context)
 
 def maxfromcountry(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''SELECT countryid,COUNT(id) as count FROM Persons
 GROUP BY countryid
@@ -370,6 +394,7 @@ ORDER BY count DESC''')
     return render(request,'wcadb/maxfromcountry.html',context)
 
 def mostincomp(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS Person2View''')
     cursor.execute('''CREATE VIEW Person2View AS
@@ -387,6 +412,7 @@ LIMIT 100''')
     return render(request,'wcadb/mostincomp.html',context)
 
 def medaltally(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS Finals2 CASCADE''')
     cursor.execute('''DROP VIEW IF EXISTS Finals3 CASCADE''')
@@ -443,6 +469,7 @@ ON GoldSilvers.personid=BronzeMedals.personid ORDER BY (gold,silver,bronze) DESC
     return render(request,'wcadb/medaltally.html',context)
 
 def mostsub10(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS Sub10Avg''')
     cursor.execute('''CREATE VIEW Sub10Avg AS
@@ -460,6 +487,7 @@ ORDER BY count DESC''')
     return render(request,'wcadb/mostsub10.html',context)
 
 def oldestsingle(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS eventnameWR CASCADE''')
     cursor.execute('''DROP VIEW IF EXISTS eventWR CASCADE''')
@@ -486,6 +514,7 @@ ORDER BY year,month,day''')
     return render(request,'wcadb/oldestsingle.html',context)
 
 def oldestaverage(request):
+    cursor=connection.cursor()
     context={}
     cursor.execute('''DROP VIEW IF EXISTS eventnameWR CASCADE''')
     cursor.execute('''DROP VIEW IF EXISTS eventWR CASCADE''')
@@ -512,5 +541,6 @@ ORDER BY year,month,day''')
     return render(request,'wcadb/oldestaverage.html',context)
 
 def Battle2View(request,wcaid1,wcaid2):
+    cursor=connection.cursor()
     context={}
     return render(request,'wcadb/battle2.html',context)
