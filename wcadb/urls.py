@@ -1,0 +1,48 @@
+from django.conf.urls import url,include
+
+from . import views
+
+app_name = 'wcadb'
+urlpatterns = [
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^rankings/single/$', views.EventSingleView.as_view(), name='eventsingle'),
+    url(r'^rankings/average/$', views.EventAverageView.as_view(), name='eventaverage'),
+    url(r'^rankings/single/(?P<eventid>[\w-]+)/$', views.EventSingleRankView, name='eventsinglepage'),
+    url(r'^rankings/average/(?P<eventid>[\w-]+)/$', views.EventAverageRankView, name='eventaveragepage'),
+    url(r'^rankings/country/$', views.CountryView.as_view(), name='country'),
+    url(r'^rankings/(?P<countryid>[\w -]+)/$', views.CountryRankView, name='countrypage'),
+    url(r'^rankings/(?P<countryid>[\w -]+)/single/$', views.CountrySingleView, name='countrysingle'),
+    url(r'^rankings/(?P<countryid>[\w -]+)/average/$', views.CountryAverageView, name='countryaverage'),
+    url(r'^rankings/(?P<countryid>[\w -]+)/single/(?P<eventid>[\w-]+)$', views.CountrySingleRankView, name='countrysinglerank'),
+    url(r'^rankings/(?P<countryid>[\w -]+)/average/(?P<eventid>[\w-]+)$', views.CountryAverageRankView, name='countryaveragerank'),
+    url(r'^records/single/$', views.RecordSingleView, name='recordsingle'),
+    url(r'^records/average/$', views.RecordAverageView, name='recordaverage'),
+    url(r'^records/country/$', views.RecordCountryView, name='recordcountry'),
+    url(r'^records/(?P<countryid>[\w -]+)/$', views.RecordCountryPageView, name='recordcountrypage'),
+    url(r'^records/(?P<countryid>[\w -]+)/single/$', views.RecordCountrySingleView, name='recordcountrysingle'),
+    url(r'^records/(?P<countryid>[\w -]+)/average/$', views.RecordCountryAverageView, name='recordcountryaverage'),
+    url(r'^competitions/upcoming/$', views.UpcomingCompsView, name='upcomingcomps'),
+    url(r'^competitions/past/$', views.PastCompsView, name='pastcomps'),
+    url(r'^competitions/upcoming/(?P<compid>[\w-]+)/$', views.NewCompView, name='newcomp'),
+    url(r'^competitions/(?P<compid>[\w-]+)/$', views.CompView, name='comp'),
+    url(r'^competitions/(?P<compid>[\w-]+)/participants/$', views.CompParticipantsView, name='compparticipants'),
+    url(r'^competitions/(?P<compid>[\w-]+)/results/$', views.CompResultsView, name='compresults'),
+    url(r'^competitions/(?P<compid>[\w-]+)/scrambles/$', views.CompScramblesView, name='compscrambles'),
+    url(r'^rankings/$', views.RankingsView.as_view(), name='rankings'),
+    url(r'^records/$', views.RecordsView.as_view(), name='records'),
+    url(r'^persons/(?P<wcaid>[\w-]+)/$', views.PersonView, name='person'),
+    url(r'^competitions/$', views.CompetitionsView.as_view(), name='competitions'),
+    url(r'^battle/$', views.BattleView.as_view(), name='battle'),
+    url(r'^battle/(?P<wcaid1>[\w-]+)/(?P<wcaid2>[\w-]+)/$', views.Battle2View, name='battle'),
+    url(r'^statistics/$', views.StatsView.as_view(), name='miscstats'),
+    url(r'^statistics/mostbyperson/$', views.mostbyperson, name='mostbyperson'),
+    url(r'^statistics/mostincountry/$', views.mostincountry, name='mostincountry'),
+    url(r'^statistics/mostincity/$', views.mostincity, name='mostincity'),
+    url(r'^statistics/mostincomp/$', views.mostincomp, name='mostincomp'),
+    url(r'^statistics/maxfromcountry/$', views.maxfromcountry, name='maxfromcountry'),
+    url(r'^statistics/medaltally/$', views.medaltally, name='medaltally'),
+    url(r'^statistics/mostsub10/$', views.mostsub10, name='mostsub10'),
+    url(r'^statistics/oldestsingle/$', views.oldestsingle, name='oldestsingle'),
+    url(r'^statistics/oldestaverage/$', views.oldestaverage, name='oldestaverage'),
+]
+

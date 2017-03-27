@@ -1,0 +1,16 @@
+{% load static %}
+<h1> WCA-PostGres</h1>
+Welcome to my website built on WCA Database using Django and PostgreSQL. You can browse following pages:
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+<ul>
+<li><a href="{% url 'wcadb:rankings' %}">Rankings</a> - See global and national world rankings for all WCA Events. </li>
+<li><a href="{% url 'wcadb:records' %}">Records</a> - See world records and country/continental records. </li>
+<li><a href="{% url 'wcadb:competitions' %}">Competitions</a> - See details of past and upcoming competitions. </li>
+<li><a href="{% url 'wcadb:battle' %}">Battle</a> - Perform a comparison of two competitors' performances in WCA competitions. </li>
+<li><a href="{% url 'wcadb:miscstats' %}">Other statistics</a> - See other assorted miscallenous statistics on the WCA database. </li>
+
+</ul>
+
+
+
+

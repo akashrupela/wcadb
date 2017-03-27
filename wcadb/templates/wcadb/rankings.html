@@ -1,0 +1,12 @@
+{% load static %}
+<h1> Rankings</h1>
+You can see average rankings or single rankings. 
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+<ul>
+<li><a href="{% url 'wcadb:eventaverage' %}">Global Average Ranks</a> - Top Average rankings for all WCA Events.</li>
+<li><a href="{% url 'wcadb:eventsingle' %}">Global Single Ranks</a> - Top Single rankings for all WCA Events.</li>
+<li><a href="{% url 'wcadb:country' %}">National Rankings</a> - View WCA rankings by country.</li>
+</ul>
+
+<a href="../">Back to Previous Page</a>
+

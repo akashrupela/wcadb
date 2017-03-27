@@ -1,0 +1,65 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/colstyle.css' %}" />
+
+{% if compinfo %}
+    {% for comp in compinfo %}
+        <h1>{{comp.name}}</h1>
+        <table>
+        <col width="200"">
+        <col width="450">
+        <tr> 
+        <td> City</td>
+        <td> {{comp.cityname}},{{comp.countryid}}</td>
+        </tr>
+        <tr> 
+        <td> Venue</td>
+        <td> {{comp.venue}},{{comp.venueaddress}}</td>
+        </tr>
+        <tr> 
+        <td> Venue Details</td>
+        <td> {{comp.venuedetails}}</td>
+        </tr>
+        <tr> 
+        <td> Start Date</td>
+        <td> {{comp.day}}/{{comp.month}}/{{comp.year}}</td>
+        </tr>
+        <tr> 
+        <td> End Date</td>
+        <td> {{comp.endday}}/{{comp.endmonth}}</td>
+        </tr>
+        <tr> 
+        <td> Organizer</td>
+        <td> {{comp.organiser}}</td>
+        </tr>
+        <tr> 
+        <td> WCA Delegate</td>
+        <td> {{comp.wcadelegate}}</td>
+        </tr>
+        <tr> 
+        <td> Website</td>
+        <td> <a href="{{comp.external_website}}">Competition Website </a></td>
+        </tr>
+        <tr> 
+        <td> Event List</td>
+        <td> {{comp.eventspecs}}</td>
+        </tr>
+        <tr> 
+        <td> Extra Information</td>
+        <td> {{comp.information}}</td>
+        </tr>
+        <tr> 
+        <td> View on WCA</td>
+        <td> <a href="http://www.worldcubeassociation.org/competitions/{{comp.id}}">View details on WCA </a></td>
+        </tr>
+        <tr>
+        <td> See Location </td>
+        <td> <a href="https://www.google.co.in/maps/@{{comp.latitude}},{{comp.longitude}},15z?hl=en">View on Google Maps </a></td>
+    {% endfor %}    
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../">Back to Previous Page</a>
+
+
+

@@ -1,0 +1,11 @@
+	{% load static %}
+<h1> Competitions</h1>
+You can see information related to upcoming and past competitions here.  
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+<ul>
+<li><a href="{% url 'wcadb:upcomingcomps' %}">Upcoming Competitiions</a> - View information related to upcoming competitions.</li>
+<li><a href="{% url 'wcadb:pastcomps' %}">Past Competitions</a> - View information and results for past competitions.</li>
+</ul>
+
+<a href="../">Back to Previous Page</a>
+

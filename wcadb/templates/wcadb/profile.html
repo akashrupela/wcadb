@@ -1,0 +1,114 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/colstyle.css' %}" />
+<h1> Profile for {{id}} </h1>
+{% if avgranks %}
+	<h1> Average Ranks
+        <table>
+        <col width="150"">
+        <col width="350">
+        <col width="200"">
+        <col width="150">
+        <col width="150"">
+        <col width="150">
+        <tr> 
+        <th> Event ID</th>
+        <th> Name</th>
+        <th> Best</th>
+        <th> World Rank</th>
+        <th> Continent Rank</th>
+        <th> Country Rank</th>
+        </tr>
+    {% for result in avgranks %}
+        <tr> 
+        <td> {{result.eventid}}</td>
+        <td> {{result.name}}</td>
+        <td> {{result.best}}</td>
+        <td> {{result.worldrank}}</td>
+        <td> {{result.continentrank}}</td>
+        <td> {{result.countryrank}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+{% endif %}
+
+{% if sinranks %}
+	<h1> Single Ranks </h1>
+        <table>
+        <col width="150"">
+        <col width="350">
+        <col width="200"">
+        <col width="150">
+        <col width="150"">
+        <col width="150">
+        <tr> 
+        <th> Event ID</th>
+        <th> Name</th>
+        <th> Best</th>
+        <th> World Rank</th>
+        <th> Continent Rank</th>
+        <th> Country Rank</th>
+        </tr>
+
+    {% for result in sinranks %}
+        <tr> 
+        <td> {{result.eventid}}</td>
+        <td> {{result.name}}</td>
+        <td> {{result.best}}</td>
+        <td> {{result.worldrank}}</td>
+        <td> {{result.continentrank}}</td>
+        <td> {{result.countryrank}}</td>
+        </tr>
+    {% endfor %}  
+{% else %}
+    <p>No information available</p>
+{% endif %}
+{% if fmcrank %}
+    {% for result in fmcrank %}
+        <tr> 
+        <td> {{result.eventid}}</td>
+        <td> {{result.name}}</td>
+        <td> {{result.best}}</td>
+        <td> {{result.worldrank}}</td>
+        <td> {{result.continentrank}}</td>
+        <td> {{result.countryrank}}</td>
+        </tr>
+    {% endfor %}    
+{% else %}
+{% endif %}
+     </table>
+
+<h1> All Results </h1>
+
+{% if results %}
+        <table>
+        <col width="200"">
+        <col width="150">
+        <col width="150"">
+        <col width="150"">
+        <col width="250">
+        <tr> 
+        <th> Event ID</th>
+        <th> Round ID</th>
+        <th> Rank</th>
+        <th> Competition ID</th>
+        <th> Country</th>
+        </tr>
+    {% for result in results %}
+        <tr> 
+        <td> {{result.eventid}}</td>
+        <td> {{result.roundid}}</td>
+        <td> {{result.pos}}</td>
+        <td> {{result.competitionid}}</td>
+        <td> {{result.personcountryid}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../../">Back to Previous Page</a>
+
+
+

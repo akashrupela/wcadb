@@ -1,0 +1,40 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/colstyle.css' %}" />
+
+<h1> Oldest standing Single world Records </h1>
+{% if compinfo %}
+        <table>
+        <col width="150"">
+        <col width="150">
+        <col width="150">
+        <col width="250"">
+        <col width="350">
+        <col width="350">
+        <tr> 
+        <th> Date</th>
+        <th> Month</th>
+        <th>Year</th>
+        <th> Event</th>
+        <th> Person</th>
+        <th>Competition</th>
+
+        </tr>
+    {% for person in compinfo %}
+        <tr> 
+        <td> {{person.day}}</td>
+        <td> {{person.month}}</td>
+        <td> {{person.year}}</td>
+        <td> {{person.event}}</td>
+        <td> <a href="{% url 'wcadb:person' person.personid%}">{{person.personname}}</a></td>
+        <td> {{person.name}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../">Back to Previous Page</a>
+
+
+

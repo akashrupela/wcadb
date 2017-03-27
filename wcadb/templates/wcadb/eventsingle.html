@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+
+{% if events %}
+    <ul>
+    {% for event in events %}
+        <li><a href="{% url 'wcadb:eventsinglepage' event.id %}">{{ event.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No events are available.</p>
+{% endif %}
+
+<a href="../">Back to Previous Page</a>
+

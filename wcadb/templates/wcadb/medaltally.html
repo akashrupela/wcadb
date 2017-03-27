@@ -1,0 +1,34 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/colstyle.css' %}" />
+
+<h1> Best Medal Tally </h1>
+{% if compinfo %}
+        <table>
+        <col width="350"">
+        <col width="150">
+        <col width="150">
+        <col width="150">
+        <tr> 
+        <th> Name</th>
+        <th> Gold</th>
+        <th>Silver</th>
+        <th> Bronze</th>
+
+        </tr>
+    {% for person in compinfo %}
+        <tr> 
+        <td> {{person.personname}}</td>
+        <td> {{person.gold}}</td>
+        <td> {{person.silver}}</td>
+        <td> {{person.bronze}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../">Back to Previous Page</a>
+
+
+

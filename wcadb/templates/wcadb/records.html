@@ -1,0 +1,12 @@
+{% load static %}
+<h1> Records</h1>
+You can see world records or national records here. 
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+<ul>
+<li><a href="{% url 'wcadb:recordaverage' %}">Global Average Records</a> - View Average world records for all WCA Events.</li>
+<li><a href="{% url 'wcadb:recordsingle' %}">Global Single Records</a> - View single world records for all WCA Events</li>
+<li><a href="{% url 'wcadb:recordcountry' %}">National Records</a> - View National records for all countries</li>
+</ul>
+
+<a href="../">Back to Previous Page</a>
+

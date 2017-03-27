@@ -1,0 +1,23 @@
+{% load static %}
+<h1> WCA-PostGres</h1>
+Welcome to my website built on WCA Database using Django and PostgreSQL. You can browse following pages:
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<ul>
+<li><a href="{% url 'polls:eventaverage' %}">Average Ranks</a> - Top Average rankings for all WCA Events.</li>
+<li><a href="{% url 'polls:eventsingle' %}">Single Ranks</a> - Top Single rankings for all WCA Events.</li>
+<li><a href="{% url 'polls:upcomingcomps' %}">Upcoming Competitions</a> - See List and details of all upcoming WCA competitions.</li>
+<li><a href="">Oldest World Records </a> - See list of oldest world records. </li>
+<li><a href="">Sum of Average Ranks </a> - See sum of average Ranks across all events. </li>
+<li><a href="">Sum of Single Ranks </a> - See sum of single Ranks. </li>
+<li><a href="">Sum of 3x3,4x4,5x5 Ranks </a> - See sum of ranks for these specific events. </li>
+<li><a href="">Past Competitions </a> - See all details, rankings, scrambles for past competitions. </li>
+<li><a href="">Best Medal Collection </a> - See best medal tally. </li>
+<li><a href="">Best Podiums </a> - See the best podiums achieved at a competition. </li>
+<li><a href="">Most Persons</a> - See the countries with most participants </li>
+<li><a href="">Most Competitions</a> - See the competitors with most competitions </li>
+
+</ul>
+
+
+
+

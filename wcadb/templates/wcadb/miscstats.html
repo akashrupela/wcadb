@@ -1,0 +1,22 @@
+{% load static %}
+<h1> Misc Stats</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+<ul>
+<li><a href="{% url 'wcadb:mostbyperson' %}">Most Competitions by a Person</a>  </li>
+<li><a href="{% url 'wcadb:mostincountry' %}">Most competitions in a country</a>  </li>
+<li><a href="{% url 'wcadb:mostincity' %}">Most competitions in a city</a>  </li>
+<li><a href="{% url 'wcadb:mostincomp' %}">Most participants in a competition</a> </li>
+<li><a href="{% url 'wcadb:maxfromcountry' %}">Most participants from a country</a> </li>
+<li><a href="{% url 'wcadb:medaltally' %}">Best overall medal tally</a>  </li>
+<li><a href="{% url 'wcadb:mostsub10' %}">Most sub10 solves on Rubik's Cube</a>  </li>
+<li><a href="{% url 'wcadb:oldestsingle' %}">Oldest Single World Records</a>  </li>
+<li><a href="{% url 'wcadb:oldestaverage' %}">Oldest Average World Records</a> </li>
+
+</ul>
+
+<a href="../">Back to Previous Page</a>
+
+
+
+
+

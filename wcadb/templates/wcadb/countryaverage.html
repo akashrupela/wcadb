@@ -1,0 +1,18 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+
+<h1> Average rankings for {{countryinfo}} </h1>
+
+{% if eventinfo %}
+    <ul>
+    {% for event in eventinfo %}
+        <li><a href="{% url 'wcadb:countryaveragerank' countryinfo event.id %}">{{ event.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No events are available.</p>
+{% endif %}
+
+<a href="../">Back to Previous Page</a>
+

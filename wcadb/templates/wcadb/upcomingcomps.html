@@ -1,0 +1,35 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+<h1>Upcoming Competitions</h1>
+
+{% if compsinfo %}
+    <table>
+    <col width="150">
+    <col width="150">
+    <col width="300">
+    <col width="150">
+    <tr>
+    <th> Start Date </td>
+    <th> End Date </td>
+    <th> Name </td>
+    <th> Location </td>
+    </tr>
+    {% for comp in compsinfo %}
+        <tr>
+        <td> {{comp.day}}/{{comp.month}}/{{comp.year}} </td>
+        <td> {{comp.endday}}/{{comp.endmonth}} </td>
+        <td> <a href="{% url 'wcadb:comp' comp.id %}">{{comp.name}}</a> </td>
+        <td> {{comp.cityname}},{{comp.countryid}} </td>
+        </tr>
+    {% endfor %}    
+    </table>
+{% else %}
+    {{event.name}}
+    {{context}}
+    <p>This event is no longer an official WCA Event. Thus rankings are not available.</p>
+{% endif %}
+
+
+<a href="../">Back to Previous Page</a>
+

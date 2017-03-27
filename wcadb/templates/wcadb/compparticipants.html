@@ -1,0 +1,26 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/colstyle.css' %}" />
+
+{% if compinfo %}
+        <table>
+        <col width="200"">
+        <col width="450">
+        <tr> 
+        <th> WCA ID</th>
+        <th> Name</th>
+        </tr>
+    {% for person in compinfo %}
+        <tr> 
+        <td> <a href="{% url 'wcadb:person' person.personid%}">{{person.personid}}</a></td>
+        <td> {{person.personname}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../">Back to Previous Page</a>
+
+
+

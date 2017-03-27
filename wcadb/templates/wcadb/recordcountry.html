@@ -1,0 +1,18 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+
+<h1> National Records </h1>
+{% if countries %}
+    Select your Country
+    <ul>
+    {% for country in countries %}
+        <li><a href="{% url 'wcadb:recordcountrypage' country.id%}">{{ country.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No countries are available.</p>
+{% endif %}
+
+<a href="../">Back to Previous Page</a>
+

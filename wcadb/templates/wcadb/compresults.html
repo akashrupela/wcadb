@@ -1,0 +1,38 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/colstyle.css' %}" />
+
+{% if compinfo %}
+        <table>
+        <col width="200"">
+        <col width="150">
+        <col width="150"">
+        <col width="350">
+        <col width="150"">
+        <col width="250">
+        <tr> 
+        <th> Event ID</th>
+        <th> Round ID</th>
+        <th> Rank</th>
+        <th> Name</th>
+        <th> WCA ID</th>
+        <th> Country</th>
+        </tr>
+    {% for result in compinfo %}
+        <tr> 
+        <td> {{result.eventid}}</td>
+        <td> {{result.roundid}}</td>
+        <td> {{result.pos}}</td>
+        <td> {{result.personname}}</td>
+        <td> <a href="{% url 'wcadb:person' result.personid%}">{{result.personid}}</a></td>
+        <td> {{result.personcountryid}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../">Back to Previous Page</a>
+
+
+

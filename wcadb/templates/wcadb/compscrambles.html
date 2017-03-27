@@ -1,0 +1,38 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/colstyle.css' %}" />
+
+{% if compinfo %}
+        <table>
+        <col width="150"">
+        <col width="150">
+        <col width="110"">
+        <col width="110">
+        <col width="110"">
+        <col width="650">
+        <tr> 
+        <th> Event ID</th>
+        <th> Round ID</th>
+        <th> Group</th>
+        <th> S. No</th>
+        <th> Extra</th>
+        <th> Scramble</th>
+        </tr>
+    {% for result in compinfo %}
+        <tr> 
+        <td> {{result.eventid}}</td>
+        <td> {{result.roundid}}</td>
+        <td> {{result.groupid}}</td>
+        <td> {{result.scramblenum}}</td>
+        <td> {{result.isextra}}</td>
+        <td> {{result.scramble}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../">Back to Previous Page</a>
+
+
+

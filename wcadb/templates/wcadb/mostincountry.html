@@ -1,0 +1,27 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/colstyle.css' %}" />
+
+<h1> Most competitions in a country </h1>
+{% if compinfo %}
+        <table>
+        <col width="300"">
+        <col width="250">
+        <tr> 
+        <th> Country ID</th>
+        <th>Competitions</th>
+        </tr>
+    {% for person in compinfo %}
+        <tr> 
+        <td> {{person.countryid}}</td>
+        <td> {{person.count}}</td>
+        </tr>
+    {% endfor %}    
+     </table>
+{% else %}
+    <p>No information available for this competition. This is likely an error because database design doesn't allow this.</p>
+{% endif %}
+<a href="../">Back to Previous Page</a>
+
+
+

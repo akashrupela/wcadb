@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'wcadb/style.css' %}" />
+
+
+
+    <h1> You can see single or average rankings for {{ countryinfo }}</h1>
+	<ul>
+	<li><a href="{% url 'wcadb:countryaverage' countryinfo %}">National Average Ranks</a> - Top Average rankings for all WCA Events.</li>
+	<li><a href="{% url 'wcadb:countrysingle' countryinfo %}">National Single Ranks</a> - Top Single rankings for all WCA Events.</li>
+	</ul>
+
+
+<a href="../">Back to Previous Page</a>
+
+
+
+

@@ -1,0 +1,38 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+{% for event in eventinfo %}
+    <h1> Average Ranks for {{ event.name }}</h1>
+{% endfor %}    
+
+
+{% if top100 %}
+    <table>
+    <col width="100">
+    <col width="350">
+    <col width="150">
+    <col width="100">
+    <tr>
+    <th> Rank </td>
+    <th> Name </td>
+    <th> Country </td>
+    <th> Result </td>
+    </tr>
+    {% for result in top100 %}
+        <tr>
+        <td> {{result.worldrank}} </td>
+        <td> {{result.name}} </td>
+        <td> {{result.countryid}} </td>
+        <td> {{result.best}} </td>
+        </tr>
+    {% endfor %}    
+    </table>
+{% else %}
+    {{event.name}}
+    {{context}}
+    <p>This event is no longer an official WCA Event. Thus rankings are not available.</p>
+{% endif %}
+
+
+<a href="../">Back to Previous Page</a>
+
